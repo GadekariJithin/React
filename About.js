@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Link} from 'react-router-dom';
 function About() {
 
     return(
@@ -144,6 +144,12 @@ function About() {
    </div>
    </div>
 </div>
+
+<div>
+      <Link to='/Shop'>
+      <button type="button" className="btn btn-info">Next</button>
+      </Link>
+      </div>
 
         </div>
         </div>
