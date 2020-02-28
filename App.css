@@ -1,4 +1,7 @@
 .App{
+  text-align: left;
+}
+.App2{
   text-align: center;
 }
 
@@ -24,5 +27,7 @@
 }
 .row {
   padding-top: 5px;
-  
-}
+  }
+  .btn btn-info{
+    margin-left: 200px;
+  }
