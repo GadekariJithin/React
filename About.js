@@ -3,15 +3,18 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+//import DayPickerInput from './react-day-picker/DayPickerInput';
 
 
-import 'react-day-picker/lib/style.css';
+//import 'react-day-picker/lib/style.css';
 
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 
 
-class About extends Component {
+class CreateSO extends Component {
+
+
+  
     
     render() {
  
@@ -21,10 +24,10 @@ class About extends Component {
         {/* First row first part*/}
             <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">SO TYPE:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">SO TYPE:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="sotype" >
     
     <option value="none" selected disabled hidden> 
@@ -54,10 +57,10 @@ class About extends Component {
  
  </div>
   {/* First row second part*/}
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">SO Status:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">SO Status:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="sostatus" >
     
     <option value="none" selected disabled hidden> 
@@ -88,10 +91,10 @@ class About extends Component {
 
            <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12"  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Practise:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">Practise:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="Practise:" >
     
     <option value="none" selected disabled hidden> 
@@ -137,10 +140,10 @@ class About extends Component {
  </div>
    {/* Second row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Priority:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Priority:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="sotype" >
     
     <option value="none" selected disabled hidden> 
@@ -160,10 +163,10 @@ class About extends Component {
           {/*Third row first PART */}
           <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Unique Id:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">Unique Id:</div>
+ <div class="col-md-6  col-sm-6">
  <input type="Unique Id" class="form-control" id="Unique Id"></input>
 
  </div>
@@ -177,10 +180,10 @@ class About extends Component {
  </div>
    {/* Third row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">SO Ageing:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">SO Ageing:</div>
+   <div class="col-md-6  col-sm-6"  >
    <input type="SO Ageing" class="form-control" id="SO Ageing"></input>
    
 
@@ -192,13 +195,13 @@ class About extends Component {
 
            <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">So Creation Date:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">So Creation Date:</div>
+ <div class="col-md-6  col-sm-6">
     
        
- < DayPickerInput onDayChange={day => console.log(day)} />
+ {/*< DayPickerInput onDayChange={day => console.log(day)} />*/}
     
 
  </div>
@@ -212,11 +215,11 @@ class About extends Component {
  </div>
    {/* Fourth row second part*/}
 
-   <div class="col-lg-6 col-sm-6">
+   <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Last Working Date:</div>
-   <div class="col-lg-6  col-sm-6"  >
-   < DayPickerInput onDayChange={day => console.log(day)} />
+   <div class="col-md-6  col-sm-6 blue">Last Working Date:</div>
+   <div class="col-md-6  col-sm-6"  >
+  {/*< DayPickerInput onDayChange={day => console.log(day)} />*/}
    
 
    </div>
@@ -230,10 +233,10 @@ class About extends Component {
 
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Location:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">Location:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="Location" >
     
     <option value="none" selected disabled hidden> 
@@ -248,10 +251,10 @@ class About extends Component {
 </div>
    {/* Fifth row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">City:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">City:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="City" >
     
     <option value="none" selected disabled hidden> 
@@ -279,10 +282,10 @@ class About extends Component {
 
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12"  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">RIMS:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">RIMS:</div>
+ <div class="col-md-6  col-sm-6">
  <input type="RIMS" class="form-control" id="RIMS"></input>
 
  </div>
@@ -296,10 +299,10 @@ class About extends Component {
  </div>
    {/* Sixth row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Tracking:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Tracking:</div>
+   <div class="col-md-6  col-sm-6"  >
    <input type="Tracking" class="form-control" id="Tracking"></input>
    
 
@@ -316,10 +319,10 @@ class About extends Component {
 
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Project TYPE:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">Project TYPE:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="Projecttype" >
     
     <option value="none" selected disabled hidden> 
@@ -333,10 +336,10 @@ class About extends Component {
 </div>
 </div>
   {/* First row second part*/}
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Project ID:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Project ID:</div>
+   <div class="col-mdm-6  col-sm-6"  >
    <select class="form-control" id="Project ID" >
     
     <option value="none" selected disabled hidden> 
@@ -376,10 +379,10 @@ class About extends Component {
 
            <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">ProjectName - Ally</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">ProjectName - Ally</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="ProjectName-Ally:" >
     
     <option value="none" selected disabled hidden> 
@@ -417,10 +420,10 @@ class About extends Component {
  </div>
    {/* Second row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Job Level:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Job Level:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="Job Level" >
     
     <option value="none" selected disabled hidden> 
@@ -462,10 +465,10 @@ class About extends Component {
           {/*Third row first PART */}
           <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Practise Area:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">Practise Area:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="Practise Area" >
     
     <option value="none" selected disabled hidden> 
@@ -483,10 +486,10 @@ class About extends Component {
 </div>
    {/* Third row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Client LOB:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Client LOB:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="Client LOB" >
     
     <option value="none" selected disabled hidden> 
@@ -512,10 +515,10 @@ class About extends Component {
 
            <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">FulfiLlment POC:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">FulfiLlment POC:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="FulfiLlment POC" >
     
     <option value="none" selected disabled hidden> 
@@ -547,10 +550,10 @@ class About extends Component {
 </div>
    {/* Fourth row second part*/}
 
-   <div class="col-lg-6 col-sm-6">
+   <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Skills:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">Skills:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="Skills" >
     
     <option value="none" selected disabled hidden> 
@@ -648,20 +651,20 @@ class About extends Component {
 {/* Fifth row first part*/}
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12"  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Billing Start Date/Joining:</div>
- <div class="col-lg-6  col-sm-6">
- < DayPickerInput onDayChange={day => console.log(day)} />
+ <div class="col-md-6  col-sm-6 blue ">Billing Start Date/Joining:</div>
+ <div class="col-md-6  col-sm-6">
+{/*< DayPickerInput onDayChange={day => console.log(day)} />*/}
 </div>
 </div>
 </div>
    {/* Fifth row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">BL/ML/SBL/Upside:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">BL/ML/SBL /Upside:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="BL/ML/SBL/Upside" >
     
     <option value="none" selected disabled hidden> 
@@ -686,21 +689,21 @@ class About extends Component {
 
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Lead Time:</div>
- <div class="col-lg-6  col-sm-6">
- <input type="Lead Time" class="form-control" id="Lead Time" value="" read only></input>
+ <div class="col-md-6  col-sm-6 blue ">Lead Time:</div>
+ <div class="col-md-6  col-sm-6">
+ <input type="text" class="form-control" id="Lead Time" value="" read only></input>
 </div>
 </div>
 </div>
    {/* Sixth row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">CP:</div>
-   <div class="col-lg-6  col-sm-6"  >
-   <input type="CP" class="form-control" id="CP" value=""></input>
+   <div class="col-md-6  col-sm-6 blue">CP:</div>
+   <div class="col-md-6  col-sm-6"  >
+   <input type="text" class="form-control" id="CP" value=""></input>
    
 
    </div>
@@ -710,21 +713,22 @@ class About extends Component {
 {/*7th  row first part */}
 <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">Revenue Loss $:</div>
- <div class="col-lg-6  col-sm-6">
- <input type="Revenue Loss $" class="form-control" id="Revenue Loss $" value=""></input>
+ <div class="col-md-6  col-sm-6 blue ">Revenue Loss:</div>
+ <div class="col-md-6  col-sm-6">
+ <input type="text" class="form-control" id="Revenue_Loss" value="" placeholder="In $"></input>
 </div>
 </div>
 </div>
    {/* 7th row second part*/}
 
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">Risk Amount $ :</div>
-   <div class="col-lg-6  col-sm-6"  >
-   <input type="Risk Amount $ " class="form-control" id="Risk Amount $ " value=""></input>
+   <div class="col-md-6  col-sm-6 blue">Risk Amount:</div>
+   <div class="col-md-6  col-sm-6"  >
+   
+   <input type="text " class="form-control" id="Risk Amount $ " value="" placeholder="In $"></input>
        </div>
     </div>
    </div>
@@ -732,10 +736,10 @@ class About extends Component {
   {/* 8th row first part*/}
   <div class="row">
  
- <div class="col-lg-6 col-sm-6 "  >
+ <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-lg-6  col-sm-4 blue ">DL Mapping:</div>
- <div class="col-lg-6  col-sm-6">
+ <div class="col-md-6  col-sm-6 blue ">DL Mapping:</div>
+ <div class="col-md-6  col-sm-6">
  <select class="form-control" id="Skills" >
     
     <option value="none" selected disabled hidden> 
@@ -768,10 +772,10 @@ class About extends Component {
 </div>
 </div>
   {/* 8th row second part*/}
- <div class="col-lg-6 col-sm-6">
+ <div class="col-md-6 col-sm-12">
    <div class="row">
-   <div class="col-lg-6  col-sm-4 blue">EL Mapping:</div>
-   <div class="col-lg-6  col-sm-6"  >
+   <div class="col-md-6  col-sm-6 blue">EL Mapping:</div>
+   <div class="col-md-6  col-sm-6"  >
    <select class="form-control" id="EL Mapping" >
     
     <option value="none" selected disabled hidden> 
@@ -810,10 +814,10 @@ class About extends Component {
 {/*7th row first part */}
 <div class="row">
  
- <div class="col-lg-12 col-sm-6 "  >
+ <div class="col-lg-12 col-sm-12"  >
  <div class="row">
- <div class="col-lg-3  col-sm-4 blue ">SO Comments:</div>
- <div class="col-lg-9 col-sm-6">
+ <div class="col-lg-3  col-sm-6 col-md-3 blue ">SO Comments:</div>
+ <div class="col-lg-9 col-sm-6 col-md-9">
  <div class="form-group">
   
   <textarea class="form-control" id="exampleFormControlTextarea3" rows="5"></textarea>
@@ -838,9 +842,9 @@ class About extends Component {
 
 
 
-      <Link to='/Shop'>
-      <button type="button" className="btn btn-info">Next</button>
-      </Link>
+ <form ref="form" onSubmit={this.handleSubmit}>
+    <button type="submit">Submit</button>
+</form>
       </div>
 
         
@@ -851,4 +855,4 @@ class About extends Component {
 }
 
 
-export default About;
+export default CreateSO;
