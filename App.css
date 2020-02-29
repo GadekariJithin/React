@@ -31,3 +31,13 @@
   .btn btn-info{
     margin-left: 200px;
   }
+
+  img{
+    height: 50px;
+    /* float: left; */
+  }
+
+  /* h1{
+    text-align: center;
+    margin-bottom: 0;
+  } */
