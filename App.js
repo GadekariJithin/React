@@ -1,9 +1,10 @@
 import React from 'react';
 import Nav from './Nav';
-import About from './About';
-import Shop from './Shop';
+import Header from './Header';
+import CreateSO from './Create SO';
+import ManageSO from './ManageSO';
 import Tab from './Tab';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import './App.css';
 import {BrowserRouter as Router, Switch,Route} from  'react-router-dom';
@@ -12,20 +13,22 @@ import {BrowserRouter as Router, Switch,Route} from  'react-router-dom';
 
 function App() {
     return(
-        <Router>
+        
         <div className="App">
+
+          <Header/>
             <Nav/>
                        
-            <Route path="/" exact component={About} />
-            <Route path="/about" component={About} />
-            <Route path="/shop" component={Shop} />
-            <Route path="/tab3" component={Tab} />
+          {/*}  <Route path="/" exact component={CreateSO} />
+            <Route path="/CreateSO" component={CreateSO} />
+            <Route path="/ManageSO" component={ManageSO} />
+    <Route path="/tab3" component={Tab} />  */}
             
             
             
         
         </div>
-        </Router>
+        
 
     );
 }
@@ -37,4 +40,3 @@ const Home = () => (
 
 
 export default App;
-
