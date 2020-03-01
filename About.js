@@ -12,8 +12,74 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class CreateSO extends Component {
+  constructor() {
+
+    super();
+
+    this.state = {
+
+      fields: {},
+
+      errors: {}
+
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
+};
+
+handleChange(e) {
+
+  let fields = this.state.fields;
+
+  fields[e.target.name] = e.target.value;
+
+  this.setState({
+    fields
+ });
+}
+
+submituserRegistrationForm(e) {
+
+  e.preventDefault();
+
+  if (this.validateForm()) {
+
+      let fields = {};
+
+      fields["SO TYPE"] = "";
+      this.setState({fields:fields});
+
+      alert("Form submitted");
+}
+}
+
+validateForm() {
+
+ 
+
+  let fields = this.state.fields;
+
+  let errors = {};
+
+  let formIsValid = true;
 
 
+
+  if (!fields["SO TYPE"]) {
+
+    formIsValid = false;
+
+    errors["SO TYPE"] = "*Please enter the SO Type.";
+
+  }
+  this.setState({
+
+    errors: errors
+
+  });
+
+  return formIsValid;
+}
   
     
     render() {
@@ -22,13 +88,15 @@ class CreateSO extends Component {
         <div class="container">
         <div className="App">
         {/* First row first part*/}
+
+        <form action="/action_page.php" method="post" id="form1" onSubmit= {this.submituserRegistrationForm}></form>
             <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">SO TYPE:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" id="sotype" >
+ <select class="form-control" id="sotype" value={this.state.fields.SOTYPE} onChange={this.handleChange}> >
     
     <option value="none" selected disabled hidden> 
           Select an Option 
@@ -46,9 +114,12 @@ class CreateSO extends Component {
     
     </select>
     
+   <div className="errorMsg">{this.state.errors.SOTYPE}</div>
+    
 
  </div>
  </div>
+ 
 
 
  
@@ -167,7 +238,7 @@ class CreateSO extends Component {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Unique Id:</div>
  <div class="col-md-6  col-sm-6">
- <input type="Unique Id" class="form-control" id="Unique Id"></input>
+ <input type="text" class="form-control" id="Unique Id"></input>
 
  </div>
  </div>
@@ -184,7 +255,7 @@ class CreateSO extends Component {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">SO Ageing:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="SO Ageing" class="form-control" id="SO Ageing"></input>
+   <input type="text" class="form-control" id="SO Ageing"></input>
    
 
    </div>
@@ -286,7 +357,7 @@ class CreateSO extends Component {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">RIMS:</div>
  <div class="col-md-6  col-sm-6">
- <input type="RIMS" class="form-control" id="RIMS"></input>
+ <input type="text" class="form-control" id="RIMS"></input>
 
  </div>
  </div>
@@ -303,7 +374,7 @@ class CreateSO extends Component {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Tracking:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="Tracking" class="form-control" id="Tracking"></input>
+   <input type="text" class="form-control" id="Tracking"></input>
    
 
    </div>
@@ -335,7 +406,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-  {/* First row second part*/}
+  {/* 7th row second part*/}
  <div class="col-md-6 col-sm-12">
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Project ID:</div>
@@ -372,7 +443,7 @@ class CreateSO extends Component {
 </div>
 
 
-{/* Second row first part */}
+{/* 8th row first part */}
 
 
 
@@ -418,7 +489,7 @@ class CreateSO extends Component {
  
  
  </div>
-   {/* Second row second part*/}
+   {/* 8th row second part*/}
 
  <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -462,7 +533,7 @@ class CreateSO extends Component {
    </div>
    </div>
 </div>
-          {/*Third row first PART */}
+          {/*9th row first PART */}
           <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
@@ -484,7 +555,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-   {/* Third row second part*/}
+   {/* 9th row second part*/}
 
  <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -511,15 +582,15 @@ class CreateSO extends Component {
    </div>
    </div>
 </div>
-{/* Fourth row first part*/ }
+{/* 10th row first part*/ }
 
            <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-md-6  col-sm-6 blue ">FulfiLlment POC:</div>
+ <div class="col-md-6  col-sm-6 blue ">Fulfillment POC:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" id="FulfiLlment POC" >
+ <select class="form-control" id="Fulfillment POC" >
     
     <option value="none" selected disabled hidden> 
           Select an Option 
@@ -548,7 +619,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-   {/* Fourth row second part*/}
+   {/* 10th row second part*/}
 
    <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -648,7 +719,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-{/* Fifth row first part*/}
+{/* 11th row first part*/}
 <div class="row">
  
  <div class="col-md-6 col-sm-12"  >
@@ -659,7 +730,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-   {/* Fifth row second part*/}
+   {/* 11th row second part*/}
 
  <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -685,7 +756,7 @@ class CreateSO extends Component {
 
 
 
-{/*Sixth row first part */}
+{/*12th row first part */}
 
 <div class="row">
  
@@ -697,7 +768,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-   {/* Sixth row second part*/}
+   {/* 12th row second part*/}
 
  <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -710,7 +781,7 @@ class CreateSO extends Component {
    </div>
    </div>
 </div>
-{/*7th  row first part */}
+{/*13th  row first part */}
 <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
@@ -721,7 +792,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-   {/* 7th row second part*/}
+   {/* 13th row second part*/}
 
  <div class="col-md-6 col-sm-12">
    <div class="row">
@@ -733,7 +804,7 @@ class CreateSO extends Component {
     </div>
    </div>
 </div>
-  {/* 8th row first part*/}
+  {/* 14th row first part*/}
   <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
@@ -771,7 +842,7 @@ class CreateSO extends Component {
 </div>
 </div>
 </div>
-  {/* 8th row second part*/}
+  {/* 14th row second part*/}
  <div class="col-md-6 col-sm-12">
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">EL Mapping:</div>
@@ -811,7 +882,7 @@ class CreateSO extends Component {
 
 </div>
 
-{/*7th row first part */}
+{/*15th row first part */}
 <div class="row">
  
  <div class="col-lg-12 col-sm-12"  >
@@ -842,9 +913,9 @@ class CreateSO extends Component {
 
 
 
- <form ref="form" onSubmit={this.handleSubmit}>
+
     <button type="submit">Submit</button>
-</form>
+
       </div>
 
         
