@@ -1,85 +1,75 @@
 import React, {Component} from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';  
 
-class ManageSO extends Component {
 
-
-  
-    
+class App extends React.Component
+{
+  constructor(props) {
+    super(props);
+    this.state = { username: '' };
+  }
+  mySubmitHandler = (event) => {
+    event.preventDefault();
+    alert("Submitted Sccessfully " + this.state.username);
+  }
   render() {
+    const data = [{  
+      
+       }]  
+   const columns = [{  
+     Header: 'SOType',  
+     //accessor: 'sotype'  
+     },{  
+     Header: 'SOPriority',  
+     //accessor: 'sopriority'  
+     },{
+       Header:'SOStatus',
+       //accessor:'sostatus'
+     },{
+        Header:'Practice',
+        //accessor:'practice'
+     },{
+        Header:'Location',
+       // accessor:'location'
+     
+     }]  
+   var myStyle = {
+         fontSize: 75,
+        
+         color: 'violet'
+      }
+  return (
+    <div className="App">
+ 
+    
+    
+      <form onSubmit={this.mySubmitHandler}>
 
-  return(
-      <div class="container">
-      <div className="App1">
-      {/* First row first part*/}
-          <div class="row">
-
-<div class="col-md-6 col-sm-12 "  >
-<div class="row">
-<div class="col-md-6  col-sm-6 blue ">SO TYPE:</div>
-<div class="col-md-6  col-sm-6">
-<select class="form-control" id="sotype" >
-  
-  <option value="none" selected disabled hidden> 
-        Select an Option 
-    </option> 
-    <option >CANCEL-TSC PEND</option>
-    <option>Cancelled-Client</option>
-    <option >Cancelled-Internal</option>
-    <option>Fulfilled</option>
-    <option >Internal - TXN SO</option>
-    <option>Need to Cancel SO</option>
-    <option >New</option>
-    <option>Replacement</option>
-    <option >Rotation</option>
-    <option>Synovus- Cancelled</option>
-  
-  </select>
-  
-
-</div>
-</div>
-
-
-
-
-
-
-</div>
-{/* First row second part*/}
-<div class="col-md-6 col-sm-12">
- <div class="row">
- <div class="col-md-6  col-sm-6 blue">SO Status:</div>
- <div class="col-md-6  col-sm-6"  >
- <select class="form-control" id="sostatus" >
-  
-  <option value="none" selected disabled hidden> 
-        Select an Option 
-    </option> 
-    <option >Ally-Evaluation</option>
-    <option>Contractor Rebadging</option>
-    <option >Fulfilled</option>
-    <option>Onboarded</option>
-    <option >Onboarding</option>
-    <option>Open-Internal</option>
-    <option >Profile - In Progress</option>
-    <option>Profile Identified</option>
-    <option >Profile Not Identified</option>
-  
-  </select>
-
-
- </div>
- </div>
-</div>
-</div>
-<div class = "submit">
-<button type="submit">Submit</button>
-</div>
-</div>
-</div>
-);
+      <p>Enter SOType:</p>
+        <input
+          type="text"
+        />
+        <br/>
+        <br/>
+        <input
+        type='submit'
+        value="submit"
+      />
+      </form>
+      <div>  
+              <ReactTable  
+                  data={data}  
+                  columns={columns}  
+                  //defaultPageSize = {1}  
+                  pageSizeOptions = {[2,4,6]}  
+              />  
+          </div>        
+    </div>
+  );
 }
+
 }
-export default ManageSO ;
+
+export default App;
