@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 import 'react-day-picker/lib/style.css';
+import axios from 'axios';
 
 //import {Link} from 'react-router-dom';
 
@@ -21,7 +22,7 @@ class CreateSO extends Component {
 
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
 };
 
 handleChange(e) {
@@ -35,7 +36,7 @@ handleChange(e) {
  });
 }
 
-handleSubmit(e) {
+submituserRegistrationForm(e) {
 
   e.preventDefault();
 
@@ -45,61 +46,102 @@ handleSubmit(e) {
 
       fields["soType"] = "";
       fields["soStatus"] = "";
-      fields["Practise"] = "";
+      fields["practise"] = "";
       fields["priority"] = "";
-      fields["Unique_id"] = "";
-      fields["SO_Ageing"] = "";
-      fields["Location"] = "";
-      fields["City"] = "";
-      fields["RIMS"] = "";
-      fields["Tracking"] = "";
-      fields["Project_type"] = "";
-      fields["Project_ID"] = "";
-      fields["ProjectName_Ally"] = "";
-      fields["Job_Level"] = "";
-      fields["Practise_Area"] = "";
-      fields["Client_LOB"] = "";
-      fields["Fulfillment_POC"] = "";
-      fields["Skills"] = "";
-      fields["BLMLSBLUpside"] = "";
-      fields["Lead_Time"] = "";
-      fields["CP"] = "";
-      fields["Revenue_Loss"] = "";
-      fields["Risk_Amount"] = "";
-      fields["DL_Mapping"] = "";
-      fields["EL_Mapping"] = "";
+      fields["uniqueId"] = "";
+      fields["soAgeing"] = "";
      
-      fields["SO_Comments"] = "";
+      fields["location"] = "";
+      fields["city"] = "";
+      fields["rims"] = "";
+      fields["tracking"] = "";
+      fields["projectType"] = "";
+      fields["projectId"] = "";
+      fields["projectName"] = "";
+      fields["jobLevel"] = "";
+      fields["practiseArea"] = "";
+      fields["clientLob"] = "";
+      fields["fulfillmentPoc"] = "";
+      fields["skills"] = "";
+      fields["billingDate"] = "";
+      fields["blmlsblUpside"] = "";
+      fields["leadTime"] = "";
+      fields["cp"] = "";
+      fields["revenueLoss"] = "";
+      fields["riskAmount"] = "";
+      fields["dLMapping"] = "";
+      fields["eLMapping"] = "";
+     
+      fields["soComments"] = "";
 
       this.setState({fields:fields});
       console.log(this.state.fields.soType)
       console.log(this.state.fields.soStatus)
-      console.log(this.state.fields.Practise)
+      console.log(this.state.fields.practise)
       console.log(this.state.fields.priority)
-      console.log(this.state.fields.Unique_id)
-      console.log(this.state.fields.SO_Ageing)
-      console.log(this.state.fields.City)
-      console.log(this.state.fields.RIMS)
-      console.log(this.state.fields.Tracking)
-      console.log(this.state.fields.Project_type)
-      console.log(this.state.fields.Project_ID)
-      console.log(this.state.fields.ProjectName_Ally)
-      console.log(this.state.fields.Job_Level)
-      console.log(this.state.fields.Practise_Area)
-      console.log(this.state.fields.Client_LOB)
-      console.log(this.state.fields.Fulfillment_POC)
-      console.log(this.state.fields.Skills)
-      console.log(this.state.fields.bl_value)
-      console.log(this.state.fields.Lead_Time)
-      console.log(this.state.fields.CP)
-      console.log(this.state.fields.Revenue_Loss)
-      console.log(this.state.fields.Risk_Amount)
-      console.log(this.state.fields.DL_Mapping)
-      console.log(this.state.fields.EL_Mapping)
-      console.log(this.state.fields.SO_Comments)
+      console.log(this.state.fields.uniqueId)
+      console.log(this.state.fields.soAgeing)
+     
+      console.log(this.state.fields.soCreationDate)
+      console.log(this.state.fields.soLastWorkingDate)
+      console.log(this.state.fields.location)
+      console.log(this.state.fields.city)
+      console.log(this.state.fields.rims)
+      console.log(this.state.fields.tracking)
+      console.log(this.state.fields.projectType)
+      console.log(this.state.fields.projectId)
+      console.log(this.state.fields.projectName)
+      console.log(this.state.fields.jobLevel)
+      console.log(this.state.fields.practiseArea)
+      console.log(this.state.fields.clientLob)
+      console.log(this.state.fields.fulfillmentPoc)
+      console.log(this.state.fields.skills)
+      console.log(this.state.fields.billingDate)
+      console.log(this.state.fields.blmlsblUpside)
+      console.log(this.state.fields.leadTime)
+      console.log(this.state.fields.cp)
+      console.log(this.state.fields.revenueLoss)
+      console.log(this.state.fields.riskAmount)
+      console.log(this.state.fields.dLMapping)
+      console.log(this.state.fields.eLMapping)
+      console.log(this.state.fields.soComments)
+
+     let data = {
+         soType : this.state.fields.soType,
+         soStatus : this.state.fields.soStatus,
+         practise : this.state.fields.practise,
+         priority : this.state.fields.priority,
+         uniqueId : this.state.fields.uniqueId,
+         soAgeing : this.state.fields.soAgeing,
+         location : this.state.fields.location,
+         soCreationDate : this.state.fields.soCreationDate,
+         soStatsoLastWorkingDateus : this.state.fields.soLastWorkingDate,
+         city : this.state.fields.city,
+         rims : this.state.fields.rims,
+         tracking : this.state.fields.tracking,
+         projectType : this.state.fields.projectType,
+         projectId : this.state.fields.projectId,
+         projectName : this.state.fields.projectName,
+         jobLevel : this.state.fields.jobLevel,
+         practiseArea :   this.state.fields.practiseArea,
+         clientLob : this.state.fields.clientLob,
+         fulfillmentPoc :   this.state.fields.fulfillmentPoc,
+         skills : this.state.fields.skills,
+         billingDate : this.state.fields.billingDate,
+         blmlsblUpside :  this.state.fields.blmlsblUpside,
+         leadTime :  this.state.fields.leadTime,
+         cp : this.state.fields.cp,
+         revenueLoss :  this.state.fields.revenueLoss,
+         riskAmount :this.state.fields.riskAmount,
+         dLMapping :this.state.fields.dLMapping,
+         eLMapping :this.state.fields.eLMapping,
+         soComments: this.state.fields.soComments,
+       }
+      
 
      
       alert("Form submitted");
+     axios.post('http://localhost:8080/save', data)
 }
 }
 
@@ -127,11 +169,11 @@ validateForm() {
     errors["soStatus"] = "*Please enter the SO Status";
 
   }
-  if (!fields["Practise"]) {
+  if (!fields["practise"]) {
 
     formIsValid = false;
 
-    errors["Practise"] = "*Please enter the Practise";
+    errors["practise"] = "*Please enter the practise";
 
   }
   if (!fields["priority"]) {
@@ -141,158 +183,172 @@ validateForm() {
     errors["priority"] = "*Please enter the priority";
 
   }
-  if (!fields["Unique_id"]) {
+  if (!fields["uniqueId"]) {
 
     formIsValid = false;
 
-    errors["Unique_id"] = "*Please enter the Unique_id";
+    errors["uniqueId"] = "*Please enter the uniqueId";
 
   }
-  if (!fields["SO_Ageing"]) {
+  if (!fields["soAgeing"]) {
 
     formIsValid = false;
 
-    errors["SO_Ageing"] = "*Please enter the SO_Ageing";
+    errors["soAgeing"] = "*Please enter the soAgeing";
 
   }
-  if (!fields["Location"]) {
+//   if (!fields["soCreationDate"]) {
+
+//     formIsValid = false;
+
+//     errors["soCreationDate"] = "*Please enter the SO Creation Date";
+
+//   }
+//   if (!fields["soLastWorkingDate"]) {
+
+//     formIsValid = false;
+
+//     errors["soLastWorkingDate"] = "*Please enter the SO Last Working Date";
+
+//   }
+  if (!fields["location"]) {
 
     formIsValid = false;
 
-    errors["Location"] = "*Please enter the Location";
+    errors["location"] = "*Please enter the location";
 
   }
-  if (!fields["City"]) {
+  if (!fields["city"]) {
 
     formIsValid = false;
 
-    errors["City"] = "*Please enter the City";
+    errors["city"] = "*Please enter the city";
 
   }
-  if (!fields["RIMS"]) {
+  if (!fields["rims"]) {
 
     formIsValid = false;
 
-    errors["RIMS"] = "*Please enter the RIMS";
+    errors["rims"] = "*Please enter the rims";
 
   }
-  if (!fields["Tracking"]) {
+  if (!fields["tracking"]) {
 
     formIsValid = false;
 
-    errors["Tracking"] = "*Please enter the Tracking";
+    errors["tracking"] = "*Please enter the tracking";
 
   }
-  if (!fields["Project_type"]) {
+  if (!fields["projectType"]) {
 
     formIsValid = false;
 
-    errors["Project_type"] = "*Please enter the Project_type";
+    errors["projectType"] = "*Please enter the projectType";
 
   }
-  if (!fields["Project_ID"]) {
+  if (!fields["projectId"]) {
 
     formIsValid = false;
 
-    errors["Project_ID"] = "*Please enter the Project_ID";
+    errors["projectId"] = "*Please enter the projectId";
 
   }
-  if (!fields["ProjectName_Ally"]) {
+  if (!fields["projectName"]) {
 
     formIsValid = false;
 
-    errors["ProjectName_Ally"] = "*Please enter the ProjectName";
+    errors["projectName"] = "*Please enter the ProjectName";
 
   }
-  if (!fields["Job_Level"]) {
+  if (!fields["jobLevel"]) {
 
     formIsValid = false;
 
-    errors["Job_Level"] = "*Please enter the Job_Level";
+    errors["jobLevel"] = "*Please enter the jobLevel";
 
   }
-  if (!fields["Practise_Area"]) {
+  if (!fields["practiseArea"]) {
 
     formIsValid = false;
 
-    errors["Practise_Area"] = "*Please enter the PractiseArea";
+    errors["practiseArea"] = "*Please enter the PractiseArea";
 
   }
-  if (!fields["Client_LOB"]) {
+  if (!fields["clientLob"]) {
 
     formIsValid = false;
 
-    errors["Client_LOB"] = "*Please enter the Client LOB";
+    errors["clientLob"] = "*Please enter the Client LOB";
 
   }
-  if (!fields["Fulfillment_POC"]) {
+  if (!fields["fulfillmentPoc"]) {
 
     formIsValid = false;
 
-    errors["Fulfillment_POC"] = "*Please enter the Fulfillment POC";
+    errors["fulfillmentPoc"] = "*Please enter the Fulfillment POC";
 
   }
-  if (!fields["Skills"]) {
+  if (!fields["skills"]) {
 
     formIsValid = false;
 
-    errors["Skills"] = "*Please enter the Skills";
+    errors["skills"] = "*Please enter the skills";
 
   }
-  if (!fields["bl_value"]) {
+  if (!fields["blmlsblUpside"]) {
 
     formIsValid = false;
 
-    errors["bl_value"] = "*Please enter the BL/ML/SBL/Upside";
+    errors["blmlsblUpside"] = "*Please enter the BL/ML/SBL/Upside";
 
   }
-  if (!fields["Lead_Time"]) {
+  if (!fields["leadTime"]) {
 
     formIsValid = false;
 
-    errors["Lead_Time"] = "*Please enter the Lead_Time";
+    errors["leadTime"] = "*Please enter the leadTime";
 
   }
-  if (!fields["CP"]) {
+  if (!fields["cp"]) {
 
     formIsValid = false;
 
-    errors["CP"] = "*Please enter the CP";
+    errors["cp"] = "*Please enter the cp";
 
   }
-  if (!fields["Revenue_Loss"]) {
+  if (!fields["revenueLoss"]) {
 
     formIsValid = false;
 
-    errors["Revenue_Loss"] = "*Please enter the Revenue Loss";
+    errors["revenueLoss"] = "*Please enter the Revenue Loss";
 
   }
-  if (!fields["Risk_Amount"]) {
+  if (!fields["riskAmount"]) {
 
     formIsValid = false;
 
-    errors["Risk_Amount"] = "*Please enter the Risk Amount";
+    errors["riskAmount"] = "*Please enter the Risk Amount";
 
   }
-  if (!fields["DL_Mapping"]) {
+  if (!fields["dLMapping"]) {
 
     formIsValid = false;
 
-    errors["DL_Mapping"] = "*Please enter the DL Mapping";
+    errors["dLMapping"] = "*Please enter the DL Mapping";
 
   }
-  if (!fields["EL_Mapping"]) {
+  if (!fields["eLMapping"]) {
 
     formIsValid = false;
 
-    errors["EL_Mapping"] = "*Please enter the EL Mapping";
+    errors["eLMapping"] = "*Please enter the EL Mapping";
 
   }
-  if (!fields["SO_Comments"]) {
+  if (!fields["soComments"]) {
 
     formIsValid = false;
 
-    errors["SO_Comments"] = "*Please enter the SO Comments";
+    errors["soComments"] = "*Please enter the SO Comments";
 
   }
  
@@ -313,7 +369,7 @@ validateForm() {
         <div className="App">
         {/* First row first part*/}
 
-        <form  method="post" id="form1" onSubmit= {this.handleSubmit}>
+        <form  method="post" id="form1" onSubmit= {this.submituserRegistrationForm}>
             <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
@@ -386,7 +442,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Practise:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="Practise"  value={this.state.fields.Practise} onChange={this.handleChange}> 
+ <select class="form-control" name="practise"  value={this.state.fields.practise} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -418,7 +474,7 @@ validateForm() {
       <option>QE&A</option>
     
     </select>
-    <div className="errorMsg">{this.state.errors.Practise}</div> 
+    <div className="errorMsg">{this.state.errors.practise}</div> 
 
  </div>
  </div>
@@ -457,9 +513,9 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Unique Id:</div>
  <div class="col-md-6  col-sm-6">
- <input type="text"   class="form-control" name="Unique_id" autocomplete="off" value={this.state.fields.Unique_id} onChange={this.handleChange}> 
+ <input type="number" class="form-control" name="uniqueId" autocomplete="off" value={this.state.fields.uniqueId} onChange={this.handleChange}> 
   </input>
- <div className="errorMsg">{this.state.errors.Unique_id}</div>
+ <div className="errorMsg">{this.state.errors.uniqueId}</div>
  </div>
  </div>
 
@@ -474,9 +530,9 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">SO Ageing:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="text"  class="form-control" name="SO_Ageing" autocomplete="off" value={this.state.fields.SO_Ageing} onChange={this.handleChange}>
+   <input type="number" class="form-control" name="soAgeing" autocomplete="off" value={this.state.fields.soAgeing} onChange={this.handleChange}>
    </input>
-   <div className="errorMsg">{this.state.errors.SO_Ageing}</div>
+   <div className="errorMsg">{this.state.errors.soAgeing}</div>
 
    </div>
    </div>
@@ -492,7 +548,7 @@ validateForm() {
  <div class="col-md-6  col-sm-6 ">
     
        
- < DayPickerInput onDayChange={day => console.log(day)} />
+ < DayPickerInput   name="soCreationDate"   onDayChange={day => console.log(day)} />
     
 
  </div>
@@ -509,7 +565,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Last Working Date:</div>
    <div class="col-md-6  col-sm-6"  >
-  < DayPickerInput onDayChange={day => console.log(day)} />
+  < DayPickerInput name="soLastWorkingDate"  onDayChange={day => console.log(day)} />
    
 
    </div>
@@ -524,7 +580,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Location:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="Location" value={this.state.fields.Location} onChange={this.handleChange}> 
+ <select class="form-control" name="location" value={this.state.fields.location} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -533,7 +589,7 @@ validateForm() {
       <option>OffShore</option>
       <option >NearShore</option>
 </select>
-<div className="errorMsg">{this.state.errors.Location}</div>
+<div className="errorMsg">{this.state.errors.location}</div>
 </div>
 </div>
 </div>
@@ -543,7 +599,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">City:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="City" value={this.state.fields.City} onChange={this.handleChange}> 
+   <select class="form-control" name="city" value={this.state.fields.city} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -558,7 +614,7 @@ validateForm() {
       <option>Troy</option>
     
     </select>
-    <div className="errorMsg">{this.state.errors.City}</div>
+    <div className="errorMsg">{this.state.errors.city}</div>
    </div>
    </div>
    </div>
@@ -570,12 +626,12 @@ validateForm() {
  
  <div class="col-md-6 col-sm-12"  >
  <div class="row">
- <div class="col-md-6  col-sm-6 blue ">RIMS:</div>
+ <div class="col-md-6  col-sm-6 blue ">Rims:</div>
  <div class="col-md-6  col-sm-6">
- <input type="text" class="form-control" name="RIMS" autocomplete="off" value={this.state.fields.RIMS} onChange={this.handleChange}>
+ <input type="text" class="form-control" name="rims" autocomplete="off" value={this.state.fields.rims} onChange={this.handleChange}>
 
  </input>
- <div className="errorMsg">{this.state.errors.RIMS}</div>
+ <div className="errorMsg">{this.state.errors.rims}</div>
  </div>
  </div>
 
@@ -590,11 +646,11 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Tracking:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="text" class="form-control" name="Tracking" autocomplete="off" value={this.state.fields.Tracking} onChange={this.handleChange}>
+   <input type="text" class="form-control" name="tracking" autocomplete="off" value={this.state.fields.tracking} onChange={this.handleChange}>
 
    </input>
    
-   <div className="errorMsg">{this.state.errors.Tracking}</div>
+   <div className="errorMsg">{this.state.errors.tracking}</div>
    </div>
    </div>
    </div>
@@ -609,7 +665,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Project TYPE:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="Project_type" value={this.state.fields.Project_type} onChange={this.handleChange}> 
+ <select class="form-control" name="projectType" value={this.state.fields.projectType} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -618,7 +674,7 @@ validateForm() {
       <option>BTM</option>
       <option>NBL</option>
 </select>
-<div className="errorMsg">{this.state.errors.Project_type}</div>
+<div className="errorMsg">{this.state.errors.projectType}</div>
 </div>
 </div>
 </div>
@@ -627,7 +683,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Project ID:</div>
    <div class="col-mdm-6  col-sm-6"  >
-   <select class="form-control" name="Project_ID" value={this.state.fields.Project_ID} onChange={this.handleChange}> 
+   <select class="form-control" name="projectId" value={this.state.fields.projectId} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -652,7 +708,7 @@ validateForm() {
     
     
     </select>
-    <div className="errorMsg">{this.state.errors.Project_ID}</div>
+    <div className="errorMsg">{this.state.errors.projectId}</div>
    </div>
    </div>
    </div>
@@ -666,7 +722,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">ProjectName - Ally</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="ProjectName_Ally" value={this.state.fields.ProjectName_Ally} onChange={this.handleChange}> 
+ <select class="form-control" name="projectName" value={this.state.fields.projectName} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -690,7 +746,7 @@ validateForm() {
       <option >Ally SAP Migration</option>
     
     </select>
-    <div className="errorMsg">{this.state.errors.ProjectName_Ally}</div>
+    <div className="errorMsg">{this.state.errors.projectName}</div>
 
  </div>
  </div>
@@ -706,7 +762,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Job Level:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="Job_Level" value={this.state.fields.Job_Level} onChange={this.handleChange}> 
+   <select class="form-control" name="jobLevel" value={this.state.fields.jobLevel} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -739,7 +795,7 @@ validateForm() {
       <option >Technology Specialist</option>
     
     </select>
-    <div className="errorMsg">{this.state.errors.Job_Level}</div>
+    <div className="errorMsg">{this.state.errors.jobLevel}</div>
    </div>
    </div>
    </div>
@@ -751,7 +807,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Practise Area:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="Practise_Area" value={this.state.fields.Practise_Area} onChange={this.handleChange}>
+ <select class="form-control" name="practiseArea" value={this.state.fields.practiseArea} onChange={this.handleChange}>
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -763,7 +819,7 @@ validateForm() {
       <option >EAS</option>
       <option>AQ</option>
 </select>
-<div className="errorMsg">{this.state.errors.Practise_Area}</div>
+<div className="errorMsg">{this.state.errors.practiseArea}</div>
 </div>
 </div>
 </div>
@@ -773,7 +829,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Client LOB:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="Client_LOB" value={this.state.fields.Client_LOB} onChange={this.handleChange}> 
+   <select class="form-control" name="clientLob" value={this.state.fields.clientLob} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -788,7 +844,7 @@ validateForm() {
       <option >Information Protection and Risk Managemen</option>
       <option>Not Applicable</option>
 </select>
-<div className="errorMsg">{this.state.errors.Client_LOB}</div>
+<div className="errorMsg">{this.state.errors.clientLob}</div>
 
    </div>
    </div>
@@ -802,7 +858,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Fulfillment POC:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="Fulfillment_POC" value={this.state.fields.Fulfillment_POC} onChange={this.handleChange}> 
+ <select class="form-control" name="fulfillmentPoc" value={this.state.fields.fulfillmentPoc} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -828,7 +884,7 @@ validateForm() {
       <option >Vimal</option>
       <option>Voorapan Krishnan / Karthik Kumar</option>
 </select>
-<div className="errorMsg">{this.state.errors.Fulfillment_POC}</div>
+<div className="errorMsg">{this.state.errors.fulfillmentPoc}</div>
 </div>
 </div>
 </div>
@@ -838,7 +894,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">Skills:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="Skills" value={this.state.fields.Skills} onChange={this.handleChange}> 
+   <select class="form-control" name="skills" value={this.state.fields.skills} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -928,7 +984,7 @@ validateForm() {
       <option >Strategic Business Consulting</option>
       <option>Skill Not Listed</option>
 </select>
-<div className="errorMsg">{this.state.errors.Skills}</div>
+<div className="errorMsg">{this.state.errors.skills}</div>
 </div>
 </div>
 </div>
@@ -941,7 +997,7 @@ validateForm() {
  <div class="col-md-6  col-sm-6 blue ">Billing Start Date/Joining:</div>
  <div class="col-md-6  col-sm-6">
      < DayPickerInput onDayChange={day => console.log(day)} />
-     <div className="errorMsg">{this.state.errors.bl_value}</div>
+    
 </div>
 
 </div>
@@ -952,7 +1008,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">BL/ML/SBL /Upside:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="bl_value" value={this.state.fields.bl_value} onChange={this.handleChange}> 
+   <select class="form-control" name="blmlsblUpside" value={this.state.fields.blmlsblUpside} onChange={this.handleChange}> 
     
     <option value="none" 
     selected="selected"> Select an Option 
@@ -965,7 +1021,7 @@ validateForm() {
       <option>Upside-New</option>
       <option >Upside-Replacement</option>
        </select>
-       <div className="errorMsg">{this.state.errors.bl_value}</div>
+       <div className="errorMsg">{this.state.errors.blmlsblUpside}</div>
        </div>
     </div>
    </div>
@@ -979,10 +1035,10 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Lead Time:</div>
  <div class="col-md-6  col-sm-6">
- <input type="text" class="form-control" name="Lead_Time" autocomplete="off" value={this.state.fields.Lead_Time} onChange={this.handleChange}>
+ <input type="text" class="form-control" name="leadTime" autocomplete="off" value={this.state.fields.leadTime} onChange={this.handleChange}>
 
  </input>
- <div className="errorMsg">{this.state.errors.Lead_Time}</div>
+ <div className="errorMsg">{this.state.errors.leadTime}</div>
 </div>
 </div>
 </div>
@@ -992,10 +1048,10 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">CP:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="text" class="form-control" name="CP" autocomplete="off" value={this.state.fields.CP} onChange={this.handleChange}>
+   <input type="text" class="form-control" name="cp" autocomplete="off" value={this.state.fields.cp} onChange={this.handleChange}>
      </input>
    
-   <div className="errorMsg">{this.state.errors.CP}</div>
+   <div className="errorMsg">{this.state.errors.cp}</div>
    </div>
    </div>
    </div>
@@ -1007,10 +1063,10 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Revenue Loss:</div>
  <div class="col-md-6  col-sm-6">
- <input type="text" class="form-control" name="Revenue_Loss" autocomplete="off" placeholder="In $" value={this.state.fields.Revenue_Loss} onChange={this.handleChange}>
+ <input type="text" readonly="readonly" class="form-control" name="revenueLoss" autocomplete="off" placeholder="In $" value={this.state.fields.revenueLoss} onChange={this.handleChange}>
 
  </input>
- <div className="errorMsg">{this.state.errors.Revenue_Loss}</div>
+ <div className="errorMsg">{this.state.errors.revenueLoss}</div>
 </div>
 </div>
 </div>
@@ -1021,8 +1077,8 @@ validateForm() {
    <div class="col-md-6  col-sm-6 blue">Risk Amount:</div>
    <div class="col-md-6  col-sm-6"  >
    
-   <input type="text " class="form-control" name="Risk_Amount" autocomplete="off" value={this.state.fields.Risk_Amount} onChange={this.handleChange} placeholder="In $"></input>
-   <div className="errorMsg">{this.state.errors.Risk_Amount}</div>
+   <input type="text " readonly="readonly" class="form-control" name="riskAmount" autocomplete="off" value={this.state.fields.riskAmount} onChange={this.handleChange} placeholder="In $"></input>
+   <div className="errorMsg">{this.state.errors.riskAmount}</div>
        </div>
     </div>
    </div>
@@ -1034,7 +1090,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">DL Mapping:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="DL_Mapping" value={this.state.fields.DL_Mapping} onChange={this.handleChange}> 
+ <select class="form-control" name="dLMapping" value={this.state.fields.dLMapping} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -1062,7 +1118,7 @@ validateForm() {
       <option>Seebeyond</option>
       <option>Datastage</option>
       </select>
-      <div className="errorMsg">{this.state.errors.DL_Mapping}</div>
+      <div className="errorMsg">{this.state.errors.dLMapping}</div>
 </div>
 </div>
 </div>
@@ -1071,7 +1127,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">EL Mapping:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="EL_Mapping" value={this.state.fields.EL_Mapping} onChange={this.handleChange}> 
+   <select class="form-control" name="eLMapping" value={this.state.fields.eLMapping} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -1096,7 +1152,7 @@ validateForm() {
     
     
     </select>
-    <div className="errorMsg">{this.state.errors.EL_Mapping}</div>
+    <div className="errorMsg">{this.state.errors.eLMapping}</div>
    </div>
    </div>
    </div>
@@ -1111,10 +1167,10 @@ validateForm() {
  <div class="col-lg-9 col-sm-6 col-md-9">
  <div class="form-group">
   
-  <textarea class="form-control" name="SO_Comments" rows="5" value={this.state.fields.SO_Comments} onChange={this.handleChange}>
+  <textarea class="form-control" name="soComments" rows="5" value={this.state.fields.soComments} onChange={this.handleChange}>
     
   </textarea>
-  <div className="errorMsg">{this.state.errors.SO_Comments}</div>
+  <div className="errorMsg">{this.state.errors.soComments}</div>
 </div>
 
  </div>
@@ -1148,5 +1204,3 @@ validateForm() {
 }
 
 export default CreateSO;
-
-
