@@ -40,6 +40,10 @@ handleChange(e) {
  });
 }
 
+function APIEndPointCallOne() {
+  return axios.get('http://localhost:8080/fetchStatusType?statusType1=SOType&statusType2=SOStatus')
+         .then(response => response)
+}
 componentDidMount() {
     console.log("componentDidMount")
     axios.get('http://localhost:8080/fetchStatusType?statusType1=SOType&statusType2=SOStatus')
@@ -49,13 +53,15 @@ componentDidMount() {
             data : response.data
           })    
         })
-        axios.get('http://localhost:8080/fetchStatusType?statusType1=SOType&statusType2=SOStatus')
-        .then(response => {
-             console.log(response.data)
-         this.setState({
-           data : response.data
-         })    
-       })
+       .then(responseTwo => {
+      APIEndPointCallOne()
+        .then(responseOne => {
+          console.log(response.data)
+          this.setState({
+            data : responseOne.data
+          })  
+    })
+    })
 
 }
 
