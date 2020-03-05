@@ -7,19 +7,23 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
 
+
 //import {Link} from 'react-router-dom';
 
 class CreateSO extends Component {
-  constructor() {
+  constructor(props) {
 
-    super();
+    super(props);
 
     this.state = {
 
       fields: {},
-
-      errors: {}
-
+      soCreationDate : '',
+      errors: {},
+      data: [],
+      statusDescSOType : [],
+      statusDescSOStatus : [],
+      
     }
     this.handleChange = this.handleChange.bind(this);
     this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
@@ -36,6 +40,26 @@ handleChange(e) {
  });
 }
 
+componentDidMount() {
+    console.log("componentDidMount")
+    axios.get('http://localhost:8080/fetchStatusType?statusType1=SOType&statusType2=SOStatus')
+         .then(response => {
+              console.log(response.data)
+          this.setState({
+            data : response.data
+          })    
+        })
+        axios.get('http://localhost:8080/fetchStatusType?statusType1=SOType&statusType2=SOStatus')
+        .then(response => {
+             console.log(response.data)
+         this.setState({
+           data : response.data
+         })    
+       })
+
+}
+
+
 submituserRegistrationForm(e) {
 
   e.preventDefault();
@@ -46,11 +70,11 @@ submituserRegistrationForm(e) {
 
       fields["soType"] = "";
       fields["soStatus"] = "";
-      fields["practise"] = "";
+      fields["practice"] = "";
       fields["priority"] = "";
       fields["uniqueId"] = "";
       fields["soAgeing"] = "";
-     
+      fields["soCreationDate"] = this.state.soCreationDate;
       fields["location"] = "";
       fields["city"] = "";
       fields["rims"] = "";
@@ -59,7 +83,7 @@ submituserRegistrationForm(e) {
       fields["projectId"] = "";
       fields["projectName"] = "";
       fields["jobLevel"] = "";
-      fields["practiseArea"] = "";
+      fields["practiceArea"] = "";
       fields["clientLob"] = "";
       fields["fulfillmentPoc"] = "";
       fields["skills"] = "";
@@ -70,19 +94,19 @@ submituserRegistrationForm(e) {
       fields["revenueLoss"] = "";
       fields["riskAmount"] = "";
       fields["dLMapping"] = "";
-      fields["eLMapping"] = "";
+      fields["elMapping"] = "";
      
       fields["soComments"] = "";
 
       this.setState({fields:fields});
-      console.log(this.state.fields.soType)
+      {/*console.log(this.state.fields.soType)
       console.log(this.state.fields.soStatus)
-      console.log(this.state.fields.practise)
+      console.log(this.state.fields.practice)
       console.log(this.state.fields.priority)
       console.log(this.state.fields.uniqueId)
       console.log(this.state.fields.soAgeing)
      
-      console.log(this.state.fields.soCreationDate)
+      console.log(this.state.soCreationDate)
       console.log(this.state.fields.soLastWorkingDate)
       console.log(this.state.fields.location)
       console.log(this.state.fields.city)
@@ -92,7 +116,7 @@ submituserRegistrationForm(e) {
       console.log(this.state.fields.projectId)
       console.log(this.state.fields.projectName)
       console.log(this.state.fields.jobLevel)
-      console.log(this.state.fields.practiseArea)
+      console.log(this.state.fields.practiceArea)
       console.log(this.state.fields.clientLob)
       console.log(this.state.fields.fulfillmentPoc)
       console.log(this.state.fields.skills)
@@ -103,19 +127,20 @@ submituserRegistrationForm(e) {
       console.log(this.state.fields.revenueLoss)
       console.log(this.state.fields.riskAmount)
       console.log(this.state.fields.dLMapping)
-      console.log(this.state.fields.eLMapping)
-      console.log(this.state.fields.soComments)
+      console.log(this.state.fields.elMapping)
+      console.log(this.state.fields.soComments)*/}
 
      let data = {
          soType : this.state.fields.soType,
          soStatus : this.state.fields.soStatus,
-         practise : this.state.fields.practise,
+         practice : this.state.fields.practice,
          priority : this.state.fields.priority,
          uniqueId : this.state.fields.uniqueId,
          soAgeing : this.state.fields.soAgeing,
+         
+         soCreationDate : this.state.soCreationDate,
+         soLastWorkingDate : this.state.fields.soLastWorkingDate,
          location : this.state.fields.location,
-         soCreationDate : this.state.fields.soCreationDate,
-         soStatsoLastWorkingDateus : this.state.fields.soLastWorkingDate,
          city : this.state.fields.city,
          rims : this.state.fields.rims,
          tracking : this.state.fields.tracking,
@@ -123,7 +148,7 @@ submituserRegistrationForm(e) {
          projectId : this.state.fields.projectId,
          projectName : this.state.fields.projectName,
          jobLevel : this.state.fields.jobLevel,
-         practiseArea :   this.state.fields.practiseArea,
+         practiceArea :   this.state.fields.practiceArea,
          clientLob : this.state.fields.clientLob,
          fulfillmentPoc :   this.state.fields.fulfillmentPoc,
          skills : this.state.fields.skills,
@@ -133,17 +158,21 @@ submituserRegistrationForm(e) {
          cp : this.state.fields.cp,
          revenueLoss :  this.state.fields.revenueLoss,
          riskAmount :this.state.fields.riskAmount,
-         dLMapping :this.state.fields.dLMapping,
-         eLMapping :this.state.fields.eLMapping,
+         dlMapping :this.state.fields.dlMapping,
+         elMapping :this.state.fields.elMapping,
          soComments: this.state.fields.soComments,
        }
       
-
+    }
      
+    
       alert("Form submitted");
-     axios.post('http://localhost:8080/save', data)
-}
-}
+    // axios.post('http://localhost:8080/save', data)
+    
+    
+                    
+             
+}    
 
 validateForm() {
 
@@ -169,11 +198,11 @@ validateForm() {
     errors["soStatus"] = "*Please enter the SO Status";
 
   }
-  if (!fields["practise"]) {
+  if (!fields["practice"]) {
 
     formIsValid = false;
 
-    errors["practise"] = "*Please enter the practise";
+    errors["practice"] = "*Please enter the practice";
 
   }
   if (!fields["priority"]) {
@@ -267,11 +296,11 @@ validateForm() {
     errors["jobLevel"] = "*Please enter the jobLevel";
 
   }
-  if (!fields["practiseArea"]) {
+  if (!fields["practiceArea"]) {
 
     formIsValid = false;
 
-    errors["practiseArea"] = "*Please enter the PractiseArea";
+    errors["practiceArea"] = "*Please enter the PracticeArea";
 
   }
   if (!fields["clientLob"]) {
@@ -337,11 +366,11 @@ validateForm() {
     errors["dLMapping"] = "*Please enter the DL Mapping";
 
   }
-  if (!fields["eLMapping"]) {
+  if (!fields["elMapping"]) {
 
     formIsValid = false;
 
-    errors["eLMapping"] = "*Please enter the EL Mapping";
+    errors["elMapping"] = "*Please enter the EL Mapping";
 
   }
   if (!fields["soComments"]) {
@@ -363,13 +392,27 @@ validateForm() {
   
     
     render() {
- 
+        console.log("render")
+        let data = this.state.data
+          let i = 0 
+          let j = 0
+          data.map(eachData => {
+             // console.log("'" +eachData.statusType + "'")
+              if(eachData.statusType === 'SOType    ') {
+                this.state.statusDescSOType[i++] = eachData.statusDesc
+              } else {
+                this.state.statusDescSOStatus[j++] = eachData.statusDesc
+              }
+          }
+          )
+          console.log(this.state.statusDescSOType)
+          console.log(this.state.statusDescSOStatus)
     return(
         <div class="container">
         <div className="App">
         {/* First row first part*/}
 
-        <form  method="post" id="form1" onSubmit= {this.submituserRegistrationForm}>
+        <form id="form1" onSubmit= {this.submituserRegistrationForm}>
             <div class="row">
  
  <div class="col-md-6 col-sm-12 "  >
@@ -377,21 +420,12 @@ validateForm() {
  <div class="col-md-6  col-sm-6 blue ">SO TYPE:</div>
  <div class="col-md-6  col-sm-6">
  <select class="form-control" name="soType" value={this.state.fields.soType} onChange={this.handleChange}> 
-    
-    <option value="none" selected="selected"> 
+ <option value="none" selected="selected"> 
           Select an Option 
       </option> 
-      <option >CANCEL-TSC PEND</option>
-      <option>Cancelled-Client</option>
-      <option >Cancelled-Internal</option>
-      <option>Fulfilled</option>
-      <option >Internal - TXN SO</option>
-      <option>Need to Cancel SO</option>
-      <option >New</option>
-      <option>Replacement</option>
-      <option >Rotation</option>
-      <option>Synovus- Cancelled</option>
-    
+    {
+    this.state.statusDescSOType.map(eachDesc => <option>{eachDesc}</option>)
+    }
     </select>
     
    <div className="errorMsg">{this.state.errors.soType}</div>
@@ -417,15 +451,9 @@ validateForm() {
     <option value="none" selected="selected"> 
           Select an Option 
       </option> 
-      <option >Ally-Evaluation</option>
-      <option>Contractor Rebadging</option>
-      <option >Fulfilled</option>
-      <option>Onboarded</option>
-      <option >Onboarding</option>
-      <option>Open-Internal</option>
-      <option >Profile - In Progress</option>
-      <option>Profile Identified</option>
-      <option >Profile Not Identified</option>
+      {
+    this.state.statusDescSOStatus.map(eachDesc => <option>{eachDesc}</option>)
+    }
     
     </select>
     <div className="errorMsg">{this.state.errors.soStatus}</div>
@@ -436,13 +464,14 @@ validateForm() {
 
 {/* Second row first part */}
 
+
            <div class="row">
  
  <div class="col-md-6 col-sm-12"  >
  <div class="row">
- <div class="col-md-6  col-sm-6 blue ">Practise:</div>
+ <div class="col-md-6  col-sm-6 blue ">Practice:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="practise"  value={this.state.fields.practise} onChange={this.handleChange}> 
+ <select class="form-control" name="practice"  value={this.state.fields.practice} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -474,7 +503,7 @@ validateForm() {
       <option>QE&A</option>
     
     </select>
-    <div className="errorMsg">{this.state.errors.practise}</div> 
+    <div className="errorMsg">{this.state.errors.practice}</div> 
 
  </div>
  </div>
@@ -513,7 +542,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Unique Id:</div>
  <div class="col-md-6  col-sm-6">
- <input type="number" class="form-control" name="uniqueId" autocomplete="off" value={this.state.fields.uniqueId} onChange={this.handleChange}> 
+ <input type="text" class="form-control" name="uniqueId" autocomplete="off" value={this.state.fields.uniqueId} onChange={this.handleChange}> 
   </input>
  <div className="errorMsg">{this.state.errors.uniqueId}</div>
  </div>
@@ -530,7 +559,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">SO Ageing:</div>
    <div class="col-md-6  col-sm-6"  >
-   <input type="number" class="form-control" name="soAgeing" autocomplete="off" value={this.state.fields.soAgeing} onChange={this.handleChange}>
+   <input type="text" class="form-control" name="soAgeing" autocomplete="off" value={this.state.fields.soAgeing} onChange={this.handleChange}>
    </input>
    <div className="errorMsg">{this.state.errors.soAgeing}</div>
 
@@ -548,7 +577,9 @@ validateForm() {
  <div class="col-md-6  col-sm-6 ">
     
        
- < DayPickerInput   name="soCreationDate"   onDayChange={day => console.log(day)} />
+ < DayPickerInput   name="soCreationDate"   onDayChange={day => this.setState({
+     soCreationDate:day
+ })} />
     
 
  </div>
@@ -573,6 +604,7 @@ validateForm() {
    </div>
 </div>
 {/* Fifth row first part*/}
+
 
 <div class="row">
  
@@ -656,6 +688,7 @@ validateForm() {
    </div>
    
 
+
 </div>
 {/*7th row first part */}
 
@@ -715,6 +748,7 @@ validateForm() {
 </div>
 
 {/* 8th row first part */}
+
 
            <div class="row">
  
@@ -805,9 +839,9 @@ validateForm() {
  
  <div class="col-md-6 col-sm-12 "  >
  <div class="row">
- <div class="col-md-6  col-sm-6 blue ">Practise Area:</div>
+ <div class="col-md-6  col-sm-6 blue ">Practice Area:</div>
  <div class="col-md-6  col-sm-6">
- <select class="form-control" name="practiseArea" value={this.state.fields.practiseArea} onChange={this.handleChange}>
+ <select class="form-control" name="practiceArea" value={this.state.fields.practiceArea} onChange={this.handleChange}>
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -819,7 +853,7 @@ validateForm() {
       <option >EAS</option>
       <option>AQ</option>
 </select>
-<div className="errorMsg">{this.state.errors.practiseArea}</div>
+<div className="errorMsg">{this.state.errors.practiceArea}</div>
 </div>
 </div>
 </div>
@@ -1063,7 +1097,7 @@ validateForm() {
  <div class="row">
  <div class="col-md-6  col-sm-6 blue ">Revenue Loss:</div>
  <div class="col-md-6  col-sm-6">
- <input type="text" readonly="readonly" class="form-control" name="revenueLoss" autocomplete="off" placeholder="In $" value={this.state.fields.revenueLoss} onChange={this.handleChange}>
+ <input type="text" class="form-control" name="revenueLoss" autocomplete="off" placeholder="In $" value={this.state.fields.revenueLoss} onChange={this.handleChange}>
 
  </input>
  <div className="errorMsg">{this.state.errors.revenueLoss}</div>
@@ -1077,7 +1111,7 @@ validateForm() {
    <div class="col-md-6  col-sm-6 blue">Risk Amount:</div>
    <div class="col-md-6  col-sm-6"  >
    
-   <input type="text " readonly="readonly" class="form-control" name="riskAmount" autocomplete="off" value={this.state.fields.riskAmount} onChange={this.handleChange} placeholder="In $"></input>
+   <input type="text " class="form-control" name="riskAmount" autocomplete="off" value={this.state.fields.riskAmount} onChange={this.handleChange} placeholder="In $"></input>
    <div className="errorMsg">{this.state.errors.riskAmount}</div>
        </div>
     </div>
@@ -1127,7 +1161,7 @@ validateForm() {
    <div class="row">
    <div class="col-md-6  col-sm-6 blue">EL Mapping:</div>
    <div class="col-md-6  col-sm-6"  >
-   <select class="form-control" name="eLMapping" value={this.state.fields.eLMapping} onChange={this.handleChange}> 
+   <select class="form-control" name="elMapping" value={this.state.fields.elMapping} onChange={this.handleChange}> 
     
     <option value="none" selected="selected"> 
           Select an Option 
@@ -1152,11 +1186,13 @@ validateForm() {
     
     
     </select>
-    <div className="errorMsg">{this.state.errors.eLMapping}</div>
+    <div className="errorMsg">{this.state.errors.elMapping}</div>
    </div>
    </div>
    </div>
    </div>
+
+
 
 {/*15th row first part */}
 <div class="row">
@@ -1185,6 +1221,8 @@ validateForm() {
  
 
  
+
+
 
  <div class="col-md-4 text-center"> 
     <button id="singlebutton" name="singlebutton" class="btn btn-success"  >Submit</button> 
