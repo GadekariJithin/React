@@ -1,45 +1,76 @@
+
+
+
+
+
+
+
+fetching into manageso page
+
+
+
 import 'devextreme/dist/css/dx.common.css';
 import 'devextreme/dist/css/dx.light.css';
+import axios from 'axios';
+//import { TableColumnResizing } from '@devexpress/dx-react-grid';
 import React from 'react';
-import { data } from './data.js';
+//import { customers } from './Data.js';
 import DataGrid, {
-  Editing,
-  Button,
   Column,
   FilterRow,
-HeaderFilter,
+  Button,
+  Editing,
+  Lookup,
+  HeaderFilter,
   FilterPanel,
   FilterBuilderPopup,
   Scrolling
 } from 'devextreme-react/data-grid';
 
+const columns = ['soType', 'soStatus', 'practice', 'priority','day1','day2','location','city','rims'];
+
 class ManageSO extends React.Component {
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      customers : []
+    }
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:8080/fetchdata')
+    .then(response => { 
+      console.log(response.d)
+      this.setState({
+      customers : response.data
+    })
+   })
+  }
+  
   render() {
     return (
       <DataGrid
-      
         id="gridContainer"
-        width={5000}
-        columnsAutoWidth="true"
+        width={4000}
+        //columnsWidth="55px"
+        //columnsAutoWidth="true"
         //filterBuilder={filterBuilder}
         //defaultFilterValue={filterValue}
-        dataSource={data}
+        
+        dataSource={this.state.customers}
+        defaultColumns={columns}
         showBorders={true}
       >
-        
-         <Editing
-                    allowUpdating={true}
-                   // allowAdding={true}
-                    allowDeleting={true}
-                       mode="row" />
-                         
-                         
        {/* <FilterRow visible={true} />*/}
         <FilterPanel visible={true} />
-        <FilterBuilderPopup position={filterBuilderPopupPosition} />
+        {/* <FilterBuilderPopup position={filterBuilderPopupPosition} /> */}
         <HeaderFilter visible={true} />
         <Scrolling mode="infinite" />
-
+        {/* <Column dataField="soType" caption="SO Type">
+          <Lookup dataSource={this.state.customers} valueExpr="Value" displayExpr="Text" />
+           <StringLengthRule max={5} message="The field Customer must be a string with a maximum length of 5." /> 
+        </Column> */}
        {/* <Column
           dataType="number"
           dataField="OrderNumber"
@@ -60,105 +91,12 @@ class ManageSO extends React.Component {
         <Column dataField="Employee" />
         <Column dataField="CustomerInfo.StoreCity" caption="City" />
        <Column dataField="CustomerInfo.StoreState" caption="State" />
-       <Column dataField="action" caption="Action" />*/}
-       <Column type="buttons" caption="Action">
-                    
-                    <Button name="edit" />
-                    <Button name="delete" />
-                </Column>
-       <Column dataField="type" caption="SO Type" />
-       <Column dataField="priority" caption="Priority" />
-       <Column dataField="comments" caption="SO Comments" />
-       <Column dataField="status" caption="SO Status" />
-       <Column dataField="practice" caption="Practice" />
-       <Column dataField="location" caption="Location" />
-       <Column dataField="uniqueid" caption="Unique ID" />
-       <Column dataField="comments" caption="SO Comments" />
-       <Column dataField="bl" caption="Billing Start Date/Joining Date" dataType="date" />
-       <Column dataField="ml" caption="BL/ML/SBL/Upside" dataType="date" />
-       <Column dataField="lwd" caption="LWD" dataType="date"/>
-       <Column dataField="city" caption="City"/>
-       <Column dataField="rims" caption="RIMS"/>
-       <Column dataField="tracking" caption="Tracking"/>
-       <Column dataField="skills" caption="Skills"/>
-       <Column dataField="soa" caption="SO Ageing"/>
-       <Column dataField="socd" caption="SO Creation Date"/>
-       <Column dataField="lt" caption="Lead Time"/>
-       <Column
-          editorOptions={{ format: 'currency', showClearButton: true }}
-          dataField="rl"
-          dataType="number"
-          format="currency"
-          caption="Revenue Loss"
-       ></Column>
-        <Column
-          editorOptions={{ format: 'currency', showClearButton: true }}
-          dataField="risk"
-          dataType="number"
-          format="currency"
-          caption="Risk Amount"
-        ></Column>
-        <Column dataField="poc" caption="Fulfillment POC"/>
-        <Column dataField="pa" caption="Practice Area"/>
-       <Column dataField="lob" caption="Client LOB"/>
-       <Column dataField="cp" caption="CP"/>
-       <Column dataField="joblevel" caption="Job Level"/>
-       <Column dataField="projecttype" caption="Project Type"/>
-       <Column dataField="projectid" caption="Project ID"/>
-       <Column dataField="projectname" caption="Project Name-Ally"/>
-       <Column dataField="dlmapping" caption="DL Mapping"/>
-      <Column dataField="elmapping" caption="EL Mapping"/>
-       <Column
-          editorOptions={{ format: 'currency', showClearButton: true }}
-          dataField="br"
-          dataType="number"
-          format="currency"
-          caption="Bill Rate-Move to SO Ageing"
-        ></Column>
-      </DataGrid>
-    );
-  }
-}
-
-/*function getOrderDay(rowData) {
-  return (new Date(rowData.OrderDate)).getDay();
-}
-*/
-const filterBuilderPopupPosition = {
-  of: window,
-  at: 'top',
-  my: 'top',
-  offset: { y: 10 }
-};
-
-/*const filterBuilder = {
-  customOperations: [{
-    name: 'weekends',
-    caption: 'Weekends',
-    dataTypes: ['date'],
-    icon: 'check',
-    hasValue: false,
-    calculateFilterExpression: () => [[getOrderDay, '=', 0], 'or', [getOrderDay, '=', 6]]
-  }]
-};
-
-const filterValue = [['Employee', '=', 'Clark Morgan'], 'and', ['OrderDate', 'weekends']];
-
-const saleAmountHeaderFilters = [{
-  text: 'Less than $3000',
-  value: ['SaleAmount', '<', 3000]
-}, {
-  text: '$3000 - $5000',
-  value: [['SaleAmount', '>=', 3000], ['SaleAmount', '<', 5000]]
-}, {
-  text: '$5000 - $10000',
-  value: [['SaleAmount', '>=', 5000], ['SaleAmount', '<', 10000]]
-}, {
-  text: '$10000 - $20000',
-  value: [['SaleAmount', '>=', 10000], ['SaleAmount', '<', 20000]]
-}, {
-  text: 'Greater than $20000',
-  value: ['SaleAmount', '>=', 20000]
-}];
-*/
-export default ManageSO;
+       <Column dataField="action" caption="Action"  type="buttons"/>*/}
+       <Editing
+                    allowUpdating={true}
+                    allowDeleting={true}
+                    />
+   
+                   </DataGrid>
+    )} }
+    export default ManageSO;
